@@ -1,59 +1,42 @@
-# TesloShop
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
+# Instalar paquetes Variable de entorno
+```
+* * - ng g environments
+* * - npm i -D dotenv
+* * - crear .env
+* * Crear Script De Ejecucion de Variable de Entorno
+* * - scripts/set-envs.js
+* * - node ./scripts/set-envs.js  | npm run set-envs
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+#### Linkd Doc Table 
 
-## Code scaffolding
+## - https://daisyui.com/components/table/
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+#### Linkd Doc Dash Boar 
 
-```bash
-ng generate component component-name
-```
+## - https://www.creative-tim.com/twcomponents/component/dashboard-navigation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+###### Link Doc ######
 
-```bash
-ng generate --help
-```
+## - Imagen Carousel => https://swiperjs.com/get-started
 
-## Building
+###### Instalar Paquete ######
 
-To build the project run:
+## - npm install swiper
 
-```bash
-ng build
-```
+###### Link Doc Guards ######
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## https://angular.dev/guide/http/interceptors
 
-## Running unit tests
+###### Link Doc Guards ######
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## https://angular.dev/guide/routing/common-router-tasks#preventing-unauthorized-access
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
+# Ejecuctar Docker composer
 
-For end-to-end (e2e) testing, run:
+### crear archivo config/default.conf
+### docker-compose up -d
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
