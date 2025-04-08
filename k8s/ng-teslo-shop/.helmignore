@@ -21,3 +21,6 @@
 .idea/
 *.tmproj
 .vscode/
+
+templates/README.md
+/templates/README.md
