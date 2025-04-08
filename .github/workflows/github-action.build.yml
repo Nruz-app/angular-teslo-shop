@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular App
-        run: npx ng build --configuration=production --base-href=/angular-teslo-shop/
+        run: npx ng build
 
       - name: Verificar carpeta de build
         run: ls -la dist/teslo-shop/browser
@@ -56,8 +56,8 @@ jobs:
           git pull origin main
 
       - name: Clean up old git worktree
-        run: git worktree prune
-
+        run: |
+          git worktree prune || true
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
