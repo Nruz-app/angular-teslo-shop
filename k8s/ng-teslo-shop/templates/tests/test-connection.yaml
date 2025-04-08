@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "ng-teslo-shop.fullname" . }}-test-connection"
+  labels:
+    {{- include "ng-teslo-shop.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "ng-teslo-shop.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

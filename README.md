@@ -40,3 +40,9 @@
 ### crear archivo config/default.conf
 ### docker-compose up -d
 
+
+# Comado para levantar imagen local y prod
+```
+docker-compose up -d
+docker-compose -f docker-compose.prod.yml up -d
+```

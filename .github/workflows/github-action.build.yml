@@ -1,0 +1,57 @@
+name: Angular Teslo-Shop
+
+on:
+  push:
+    branches:
+      - main  # Cambia esto si usas otra rama para producción
+
+concurrency:
+  # Define un grupo de concurrencia basado en la referencia de la rama
+  group: ci-${{ github.ref }}
+  # Cancela cualquier ejecución anterior en progreso para esta rama
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+#    strategy:
+#      matrix:
+#        node-version: [18.x,20.x,22.x]
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      #https://github.com/marketplace/actions/git-semantic-version?version=v4.0.3
+      - name: Git Semantic Version
+        uses: PaulHatch/semantic-version@v4.0.3
+        id: version
+        with:
+          major_pattern : "major"
+          minor_pattern : "feat"
+          format: "${major}.${minor}.${patch}-prerelease${increment}"
+
+
+      - name: Docker Login
+        env:
+            DOCKER_USER: ${{ secrets.DOCKER_USER }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+
+      - name: Build Docker Image
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          docker build -t nruz176/angular-teslo-shop:$NEW_VERSION .
+          docker build -t nruz176/angular-teslo-shop:latest .
+
+      - name: Push Docker Image
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          docker push nruz176/angular-teslo-shop:$NEW_VERSION
+          docker push nruz176/angular-teslo-shop:latest
