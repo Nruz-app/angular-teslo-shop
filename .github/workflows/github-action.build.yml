@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular App
-        run: npx ng build --configuration=production --base-href=/angular-gifs-app/
+        run: npx ng build --configuration=production --base-href=/angular-teslo-shop/
 
       - name: Verificar carpeta de build
         run: ls -la dist/teslo-shop/browser
@@ -46,7 +46,6 @@ jobs:
 
       - name: Limpiar posibles errores anteriores
         run: |
-          git worktree prune || true
           rm -rf github-pages-deploy-action-temp-deployment-folder || true
 
       - name: Deploy to GitHub Pages
