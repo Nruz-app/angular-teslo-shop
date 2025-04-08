@@ -46,7 +46,14 @@ jobs:
 
       - name: Limpiar posibles errores anteriores
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           rm -rf github-pages-deploy-action-temp-deployment-folder || true
+
+      - name: Verificar y crear gh-pages branch
+        run: |
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+          git reset --hard origin/main
+          git pull origin main
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
