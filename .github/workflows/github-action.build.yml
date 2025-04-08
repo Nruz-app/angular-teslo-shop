@@ -64,6 +64,7 @@ jobs:
             token: ${{ secrets.GH_TOKEN }}
             branch: gh-pages
             folder: dist/teslo-shop/browser
+            clean: true
 
 
 #      - name: deploy to Github Pages
