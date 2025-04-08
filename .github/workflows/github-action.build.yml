@@ -55,12 +55,17 @@ jobs:
           git reset --hard origin/main
           git pull origin main
 
+      - name: Clean up old git worktree
+        run: git worktree prune
+
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
             token: ${{ secrets.GH_TOKEN }}
             branch: gh-pages
             folder: dist/teslo-shop/browser
+            clean: true
 
       - name: Docker Login
         env:
