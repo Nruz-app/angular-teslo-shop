@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ng-teslo-shop
+  name: ng-teslo-shop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ng-teslo-shop
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ng-teslo-shop
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/teslo-shop-backend/ng-teslo-shop/angular-app
+        name: angular-app
+        env:
+        - name: BASE-URL
+          valueFrom:
+            configMapKeyRef:
+              name: ng-teslo-shop-config
+              key: BASE_URL
+status: {}

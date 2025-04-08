@@ -1,0 +1,30 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "us-central1-docker.pkg.dev/teslo-shop-backend/ng-teslo-shop/angular-app:$SHORT_SHA",
+        "-f",
+        "dockerfile.prod",
+        "--platform=linux/amd64",
+        "."
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "us-central1-docker.pkg.dev/teslo-shop-backend/ng-teslo-shop/angular-app:$SHORT_SHA"
+      ]
+
+images:
+  - "us-central1-docker.pkg.dev/teslo-shop-backend/ng-teslo-shop/angular-app:$SHORT_SHA"
+
+options:
+  logging: 'CLOUD_LOGGING_ONLY'
+
+# https://console.cloud.google.com/security/secret-manager?referrer=search&invt=AbuEzw&project=teslo-shop-backend
+#availableSecrets:
+#  secretManager:
+#  - versionName: projects/367390259998/secrets/teslo-shop-backend/versions/1
+#    env: 'VERSION'

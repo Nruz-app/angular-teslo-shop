@@ -5,7 +5,10 @@ services:
       dockerfile: dockerfile.prod
       args:
         NODE_ENV: production
-    image: angular-app
+    #(teslo-shop:latest) #Imagen local
+    #image: angular-app
+    #Imagen de Google Cloud Registry
+    image: us-central1-docker.pkg.dev/teslo-shop-backend/ng-teslo-shop/angular-app
     restart: always
     ports:
       - "4200:4200"   # Asegúrate de que el puerto 80 esté expuesto
